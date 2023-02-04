@@ -29,11 +29,11 @@
 %%% 封面部分
 \frontmatter
 \input{data/cover}
-\makecover
+\makecover{}
 
 % 目录
 \tableofcontents
-\tableofengcontents % 英文目录
+\tableofengcontents{} % 英文目录
 
 
 % 符号对照表
@@ -44,20 +44,16 @@
 \listoftables
 
 %%% 正文部分
-\mainmatter
+\mainmatter{}
 % \include{data/chap01}
 % \include{data/chap02}
-% \include{chapter1/introduction.tex}
-\label{chapter1}
+\include{chapter1/introduction.tex}\label{chapter1}
 
-% \include{chapter2/chapter2.tex}
-\label{chapter2}
+\include{chapter2/chapter2.tex}\label{chapter2}
 
-% \include{chapter3/chapter3.tex}
-\label{chapter3}
+\include{chapter3/chapter3.tex}\label{chapter3}
 
-\include{chapter4/chapter4.tex}
-\label{chapter4}
+\include{chapter4/chapter4.tex}\label{chapter4}
 
 % 
 % 因此，黄河流域已从过去的调水调沙与防洪等河道内外的“工程问题”，转向了“谁、在何时得到水”的流域层面的“非工程问题”，这是近现代人水关系演变的体现。
