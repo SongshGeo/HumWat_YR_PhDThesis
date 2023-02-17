@@ -1,7 +1,7 @@
-% BibTeX standard bibliography style `bnubib.bst' derived from `unsrt'
+% BibTeX standard bibliography style 'bnubib.bst' derived from 'unsrt'
 % This file is part of `bnuthesis' package.
 %
-% $Id: bnubib.bst 178 2009-01-04 13:37:39Z littleleo $
+% $ Id: bnubib.bst 178 2009-01-04 13:37:39Z littleleo $
 
 ENTRY
   { address
@@ -267,7 +267,7 @@ FUNCTION {bbl.etal}
 { "et~al." }
 
 FUNCTION {bbl.cn.etal}
-{ "等." }
+{ "ç­." }
 
 FUNCTION {format.lang}
 { lang empty$
@@ -285,7 +285,7 @@ FUNCTION {format.names}
     { s nameptr
       "{ff~}{vv~}{ll}{, jj}"    
       format.name$
-      %bibinfo bibinfo.check
+      % bibinfo bibinfo.check
       't :=
       nameptr #1 >
         {
@@ -350,7 +350,7 @@ FUNCTION {format.authors}
 FUNCTION {editors.names}
 { lang empty$
     { ", (eds.)" }
-    { ", 编" }
+    { ", ç¼" }
   if$
 }
 
@@ -562,7 +562,7 @@ FUNCTION {format.chapter.pages}
 FUNCTION {collection.in}
 { lang empty$
     { "In: " }
-    { "见: " }
+    { "è§: " }
   if$
 }
 

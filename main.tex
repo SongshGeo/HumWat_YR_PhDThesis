@@ -1,95 +1,74 @@
 % !Mode:: "TeX:UTF-8"
+% 
+% 编译说明
+%		使用 XeLaTeX 编译引擎
+%       TeX Live 的版本 2022 和 2021 目前都可以成功编译
+%       如果使用 Overleaf 进行写作，请在左上角菜单中选择编译器为 XeLaTeX
+%		在 MacBook 中推荐使用编译软件 Texpad
+
+
 \documentclass[doctor]{bnuthesis}
-% \documentclass[%
-%   bachelor|master|doctor, % 学士、硕士、博士 
-%   xetex|pdftex|dvips|dvipdfm, % 可选编译方式
-%   openany|operight,  % 连续页面，或者右侧打开
-%   secret,  % 是否涉密
-%   arialtoc,arialtitle]{bnuthesis}
+	% bachelor/master/doctor: 学士/硕士/博士学位论文
+	% twoside: 奇数页和偶数页页边距不一样，用于打印
+	\usepackage{bnutils}
+	% 调用宏包，使用 GB/T 7714-2015 参考文献著录格式
+	\usepackage{gbt7714}
+	% 这三条命令使用自动调整宽度的表格
+	% https://zhuanlan.zhihu.com/p/542672514
+	\usepackage{tabularx} % for 'tabularx' env. and 'X' col. type
+	\usepackage{ragged2e} % for \RaggedRight macro
+	\usepackage{booktabs} % for \toprule, \midrule etc macros
+	%% create a derivative column type called 'L':
+	\newcolumntype{L}{>{\RaggedRight\hangafter=1\hangindent=0em}X}
 
-% 所有其它可能用到的包都统一放在这里，可以根据实际需要添加或者删除。
-\usepackage{bnutils}
-\usepackage{gbt7714}
+	\begin{document}
+	\graphicspath{{img/}}
+	
+	\frontmatter
+	\input{data/cover}
+	\makecover{}
+	
+	\tableofcontents
+	\listoffigures % 插图索引
+	\listoftables % 表格索引
+		
+	%%% 正文部分
+	\mainmatter{}
+	% \include{data/chap01}
+	% \include{data/chap02}
+	\include{chapter1/chapter1.tex}\label{chapter1}
 
-% \usepackage{\hyperref}
-% 这三条命令使用自动调整宽度的表格
-% https://zhuanlan.zhihu.com/p/542672514
-\usepackage{tabularx} % for 'tabularx' env. and 'X' col. type
-\usepackage{ragged2e} % for \RaggedRight macro
-\usepackage{booktabs} % for \toprule, \midrule etc macros
-%% create a derivative column type called 'L':
-\newcolumntype{L}{>{\RaggedRight\hangafter=1\hangindent=0em}X}
+	\include{chapter2/chapter2.tex}\label{chapter2}
 
-% 你可以在这里修改配置文件中的定义，导言区可以使用中文。
-% \def\myname{薛瑞尼}
+	\include{chapter3/chapter3.tex}\label{chapter3}
 
+	\include{chapter4/chapter4.tex}\label{chapter4}
 
-\begin{document}
-% 定义所有的eps文件在figures子目录下
-\graphicspath{{img/}}
+	\include{chapter5/chapter5.tex}\label{chapter5}
 
-%%% 封面部分
-\frontmatter
-\input{data/cover}
-\makecover{}
+	% \include{chapter6/chapter6.tex}\label{chapter6}
 
-% 目录
-\tableofcontents
-\tableofengcontents{} % 英文目录
+	\include{chapter7/chapter7.tex}\label{chapter7}
 
-
-% 符号对照表
-% \input{data/denotation}
-% 插图索引
-\listoffigures
-% 表格索引
-\listoftables
-
-%%% 正文部分
-\mainmatter{}
-% \include{data/chap01}
-% \include{data/chap02}
-\include{chapter1/chapter1.tex}\label{chapter1}
-
-\include{chapter2/chapter2.tex}\label{chapter2}
-
-\include{chapter3/chapter3.tex}\label{chapter3}
-
-\include{chapter4/chapter4.tex}\label{chapter4}
-
-\include{chapter5/chapter5.tex}\label{chapter5}
-
-% \include{chapter6/chapter6.tex}\label{chapter6}
-
-\include{chapter7/chapter7.tex}\label{chapter7}
-
-% 
-%%% 其它部分
-%\backmatter
-
-% 
- % 参考文献
- \bibliographystyle{gbt7714-numerical}
- \bibliography{
-    refs.bib,
-    data/template.bib,
-    chapter1/chapter1.bib,
-    chapter2/chapter2.bib,
-    chapter3/chapter3.bib,
-    chapter4/chapter4.bib,
-    chapter5/chapter5.bib,
-    chapter6/chapter6.bib
-}
-
-% 附录
-%\begin{appendix}
-%\input{data/appendix01}
-%\end{appendix}
-% 
-% % 学术成果
-\include{data/paper}
-
-% 致谢
-\include{data/ack}
+	
+	\bibliographystyle{gbt7714-numerical}
+	\bibliography{
+	   refs.bib,
+	   data/template.bib,
+	   chapter1/chapter1.bib,
+	   chapter2/chapter2.bib,
+	   chapter3/chapter3.bib,
+	   chapter4/chapter4.bib,
+	   chapter5/chapter5.bib,
+	   chapter6/chapter6.bib
+   }   
+	
+   	% 附录
+	% \begin{appendix}
+	% \input{data/appendix}
+	% \end{appendix}
+	
+	\include{data/paper}
+	\include{data/ack}
 
 \end{document}

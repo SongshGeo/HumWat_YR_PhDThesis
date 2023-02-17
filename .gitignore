@@ -285,4 +285,4 @@ shuji.pdf
 img/*.pptx
 
 # 忽略原始数据
-data/
+# data/
