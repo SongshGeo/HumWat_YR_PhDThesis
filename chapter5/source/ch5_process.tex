@@ -24,3 +24,43 @@
 综上所述，两次制度转换重塑了黄河流域水资源利用的结构，形成的三类具一般性的社会-生态系统结构块如图~\ref{fig:structure}~C所示。
 
 \input{chapter5/source/tab_quota.tex}
+
+\subsection{主成分提取结果}
+
+具有解释力的变量是构建稳健的合成控制方法的关键。
+我们使用了与水消耗相关的24个变量（见表~\ref{ch5:tab:data_source}），这些数据集在先前的研究中已用于解释中国水消耗的变化\cite{zhou2020}。
+由于这些变量之间存在自相关性，我们使用肘部法选择了5个主成分作为DSC的输入，以减少维数并增强合成控制方法的稳健性（见图~\ref{fig:elbow}）。
+
+\subsection{合成控制结果}
+
+对DSC的有效性测试有两种方法：（1）比较后期和前期的重建；（2）通过安慰剂分析测试鲁棒性。
+对于（1），每个省份和它们的合成后期差异显著，而在合成前期差异较小（见图~\ref{fig:87panel}和图~\ref{fig:98panel}），这表明其水消耗变化的估计重建良好。
+对于（2），我们采用了\cite{abadie2010}所描述的现场安慰剂分析。在大多数省份中，合成后期MSPE与合成前期MSPE的比率高于其他安慰剂单位的中位数，这表明在治疗时间（此处为1987年和1998年）发生的制度转变比大多数其他省份影响更大（见图~\ref{fig:87placebo}，图~\ref{fig:98placebo}和表~\ref{tab:DSC_summary}）。
+
+\input{chapter5/source/tab_synth_rmse.tex}
+
+
+\begin{figure}[!bh]
+    \includegraphics[width=0.9\linewidth]{img/ch5/87panel.pdf}
+    \centering
+    \caption{Comparations between YRB' provinces and their synthetic controls around the 87-WAS.}\label{fig:87panel}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.9\linewidth]{img/ch5/98panel.pdf}
+    \centering
+    \caption{Comparations between YRB' provinces and their synthetic controls around the 98-UBR.}\label{fig:98panel}
+\end{figure}
+
+
+\begin{figure}
+    \includegraphics[width=0.9\linewidth]{img/ch5/87placebo.pdf}
+    \centering
+    \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 87-WAS, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE).}\label{fig:87placebo}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.9\linewidth]{img/ch5/98placebo.pdf}
+    \centering
+    \caption{Gaps in change in water use between provinces outside the YRB and their synthetic control, around the 98-UBR, excluding the provinces with high pre-treatment RMSPE (more than $3$ times of treated units' RMSPE)}\label{fig:98placebo}
+\end{figure}
