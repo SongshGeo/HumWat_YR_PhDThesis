@@ -103,7 +103,7 @@ DSC 方法是对合成控制法（Synthetic Control, SC）在鲁棒性上的改�
 通过引入$k * k$的对角线半定矩阵$\mathbf{V}$表示各协变量相对重要性，那么在所有潜在合成控制模型中求解最优合成控制权重$W$的过程为：
 
 \begin{equation}
-    \mathbf{W^{*}(V)}=\underset{\mathbf{W} \in \mathcal{W}}{\operatorname{minimize}}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)^{\prime} \mathbf{V}\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)
+    \mathbf{W^{*}(V)}=\underset{\mathbf{W} \in \mathcal{W}}{\operatorname{minimize}}{\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)}^{\prime} {\mathbf{V}}{\left(\mathbf{X}_{\mathbf{1}}-\mathbf{X}_{\mathbf{0}} \mathbf{W}\right)}
 \end{equation}
 
 给定$\mathbf{V}$的情况下，$\mathbf{W}$是矩阵$\mathbf{W}^{*}(V)$的权重向量，使处理单元与控制单元之间的特征差异最小。
@@ -111,7 +111,7 @@ DSC 方法是对合成控制法（Synthetic Control, SC）在鲁棒性上的改�
 差分合成控制法选择$\mathbf{V^{*}}$作为优化$\mathbf{W*(V)}$的$\mathbf{V}$，通过让政策干预单元和合成控制法构建的对照单元在政策干预前的结果差异最小化：
 
 \begin{equation}
-    \mathbf{V}^{*}=\underset{\mathbf{V} \in \mathcal{V}}{\operatorname{argmin}}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)^{\prime}\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)
+    \mathbf{V}^{*}=\underset{\mathbf{V} \in \mathcal{V}}{\operatorname{argmin}}{\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{}(\mathbf{V})\right)}^{\prime}{\left(\mathbf{Z}_{1}-\mathbf{Z}_{0} \mathbf{W}^{*}(\mathbf{V})\right)}
 \end{equation}
 
 其中$\mathbf{Z}_{1}$是一个$1*T_0$的矩阵，包含政策干预单元在干预前的每一个观察样本。
