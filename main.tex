@@ -1,6 +1,7 @@
 % !Mode:: "TeX:UTF-8"
 % chktex-file 19
 % chktex-file 46
+% 模板文档：https://github.com/jinyiliu/bnu-thesis-template
 
 % 
 % 编译说明
@@ -53,9 +54,11 @@
 	\include{chapter6/chapter6.tex}\label{chapter6}
 
 	\include{chapter7/chapter7.tex}\label{chapter7}
-
 	
-	\bibliographystyle{gbt7714-numerical}
+	% 参考文献格式模板文档：https://mirror.las.iastate.edu/tex-archive/biblio/bibtex/contrib/gbt7714/README.md
+	% 从 v2.0 版本开始（2020-03-04），用户必须在文档中使用 `\bibliographystyle` 命令选择参考文献样式，
+	% 如 `gbt7714-numerical` 或 `gbt7714-author-year`。
+	\bibliographystyle{gbt7714-author-year}
 	\bibliography{
 	   refs.bib,
 	   data/template.bib,
