@@ -112,11 +112,11 @@ $Q_{\max}$由黄河流域各省在$1983$年自主上报的水资源配额需求�
 \subsection{模块构建与耦合}
 
 在上述规则构架下，本研究包括两个关键模块：
-（1）人类用水模块：流域内的灌溉主体在给定水文气候条件、给定配额上限/下限的情况下如何决定其用水来源及用水量；
-（2）自然水平衡模块：水文气候条件、流域主体的作物选择和灌溉策略如何影响作物蒸散发。
+（1）人类模块：流域内的灌溉主体在给定水文气候条件、给定配额上限/下限的情况下如何决定其用水来源及用水量；
+（2）自然模块：水文气候条件、流域主体的作物选择和灌溉策略如何影响作物蒸散发。
 本节先分别介绍两个模块的运行过程，最后介绍二者间的耦合反馈关系。
 
-\subsubsection*{人类用水模块}\label{ch6:sec:society}
+\subsubsection*{人类用模块}\label{ch6:sec:society}
 
 在人类模块中，本研究使用演化公共池塘博弈的分析框架对主体面对配额限制的决策响应进行分析，使用遵循配额（$C$）与违背配额（$D$）来概括主体在面对灵活水配额制度（$1987$年至$1998$年间）的基本决策。
 博弈论（Game Theory）是研究决策者之间战略互动的数学模型，是研究具有竞争性质现象的理论和方法，对于公共水配额这种竞争性、排他性都很强的的“公共池塘资源”，符合演化公共物品博弈的模型框架\cite{ostrom2009, traulsen2010}。
@@ -144,7 +144,6 @@ $v \in [0, 1]$则表征主体“个体/集体主义”的程度，该参数越�
 % Cobb-Douglas函数(https://inomics.com/terms/cobb-douglas-production-function-1456726)
 % [Happy Planet Index](https://happyplanetindex.org/) 
 % 人类发展指数(http://hdr.undp.org/en)
-
 \begin{equation}
     S = {(grid)}^m * {(1 - group)}^n
     \label{ch6:eq:society}
@@ -154,7 +153,7 @@ $v \in [0, 1]$则表征主体“个体/集体主义”的程度，该参数越�
 即$grid^m$ 这部分表达的是主体因周围人违背制度规范而感到不舒服；$group^n$ 这部分表达的是一个主体违背制度规范而被周围人指指点点而感到不舒服。
 
 在演化博弈中，决策还是可演化的（Evolutionary），因为一些反应因为符合社会规范而受到奖励，而另一些反应则因为背离社会规范而受到惩罚。
-人类模块在每一个时间步的最后将计算所有主体的博弈结果——$0 \sim 1$标准化后的经济得分（$E$）与社会得分（$S$），并将两者平均$Score = \frac{E + S}/2$作为主体的最终得分。
+人类模块在每一个时间步的最后将计算所有主体的博弈结果——$0 \sim 1$标准化后的经济得分（$E$）与社会得分（$S$），并将两者平均$Score = \frac{E + S}{2}$作为主体的最终得分。
 在社会网络中，表现最成功的主体决策以一定概率$p_{l}$被他的朋友们学习，学习后的主体使用被学习对象的$b$和$v$参数代替学习者原本的参数。
 
 综上所述，在人类模块的每次模拟中，每个主体都将遵循图\ref{ch6:fig:society}所示的流程图：
@@ -165,28 +164,90 @@ $v \in [0, 1]$则表征主体“个体/集体主义”的程度，该参数越�
     \caption{绘图测试}\label{ch6:fig:society}
 \end{figure}
 
-\subsection{自然水平衡模块}
+\subsection{自然模块}
 
-使用 FAO56 推荐的 Penman 计算潜在蒸散发
+在自然模块中，本研究使用 FAO56 推荐的算法计算潜在蒸散发、作物蒸散系数、以及作物蒸散发。
+
+潜在蒸散发$ET_0$的计算方法使用Penman-Monteith方法，式\ref{ch6:eq:pm}：
+
+\begin{equation}
+    \label{ch6:eq:pm}
+    PET = \frac{0.408 \Delta (R_{n}-G)+\gamma \frac{900}{T+273}
+    (e_s-e_a) u_2}{\Delta+\gamma(1+0.34 u_2)}
+\end{equation}
+
+其中$Rn$为作物表面上的净辐射，$MJ/(m^2 day)$；$G$为土壤热通量，$MJ/(m^2 day)$；$T$为$2$米高处日平均气温$^\circ C$；$u2$为$2$米高处的风速，$m/s$；$es$为饱合水汽压，$kPa$；$ea$为实际水汽压$kPa$；$es - ea$为饱和水汽压差，$kPa$；为饱和水汽压曲线的斜率；$r$为湿度计常数，$kPa/^\circ C$。
+由于计算的时间尺度（月），土壤热通量可以忽略。根据其它数据可得性，对经验公式\ref{ch6:eq:pm}中的饱和水汽压$es$使用气温数据进行估算：
+
+\begin{equation}
+    e^0(T) = 0.6108 * \exp \frac{17.27 T}{T + 237.3}
+\end{equation}
+
+\begin{equation}
+    es = \frac{e^0(T_{\max}) + e^0(T_{\min})}{2}
+\end{equation}
 
 作物生长期间的作物系数曲线是用三个阶段的作物系数来估计的：初期（$Kc_{ini}$）、中期（$Kc_{mid}$）和后期（$Kc_{end}$）。
-作物系数的计算必须以表\ref{ch6:tab:crops}中的数据为依据进行定位。
+作物系数的各转折点以表\ref{ch6:tab:crops}中的数据为依据进行定位。
 $Kc_{ini}$的计算方法如下\cite{allen1998}。
 
 \begin{equation}
-    K_{\text {ciki }}=\frac{\mathrm{TEW}-(\mathrm{TEW}-\mathrm{REW}) \exp \left[-\left(\mathrm{t}_w-\mathrm{t}_1\right) E_{so}\left(1+\frac{\mathrm{REW}}{\mathrm{TEW}-\mathrm{REW}}\right)\right]}{\mathrm{t}_w E T_{\mathrm{o}}}
+    \label{ch6:eq:kcini}
+    K_{\text {c, ini}}=\frac{\mathrm{TEW}-(\mathrm{TEW}-\mathrm{REW}) \exp \left[-\left(\mathrm{t}_w-\mathrm{t}_1\right) E_{so}\left(1+\frac{\mathrm{REW}}{\mathrm{TEW}-\mathrm{REW}}\right)\right]}{\mathrm{t}_w E T_{\mathrm{o}}}
 \end{equation}
 
-其中，$TEW$为总的可蒸发水量（$mm$）；$REW$为易蒸发水量（$mm$）；$tw$为初始时期湿润事件之间的平均时间（天）；$t1$为易蒸发水量干燥完成所需的时间（天）；$Eso$为由于低含水层湿润土壤或由于以前干燥时期储存在表层的热量而增加的蒸发潜力（$mm/d$）。
+其中，$TEW$为总的可蒸发水量（$mm$）；$REW$为易蒸发水量（$mm$）；$tw$为初始时期湿润事件之间的平均时间（天）；$t_1$为易蒸发水量干燥完成所需的时间（天）；$Eso$为由于低含水层湿润土壤或由于以前干燥时期储存在表层的热量而增加的蒸发潜力（$mm/d$）。其中$E_{so} = 1.15 * ET_0$, $t_w = \frac{L_{ini}}{n_w + 0.5}$, $t_1 = REW / E_{so}$。
 
-\subsection{人地模块的耦合}
+当$t_1 < t_w$的时候，$K_{\text {c, ini}} = 1.15$，否则使用\ref{ch6:eq:kcini}进行估计，且用来$TEW_{cor}$和$REW_{cor}$替代$TEW$和$REW$。
+
+对于渗透深度$depth < 10mm$的所有土壤质地，有：
+
+\begin{equation}
+    TEW_{cor} = 10mm \\
+    REW_{cor} = \min(\max(2.5, 6 / ET_0^{0.5}, 7))
+\end{equation}
+
+对于渗透深度$depth >= 40mm$的所有土壤质地，有：
+
+\begin{equation}
+    TEW_{cor} = \min(15, 7 {(ET_0)}^{0.5}) \\
+    REW_{cor} = \min(6, TEW_{cor} - 0.01)
+\end{equation}
+
+适用于渗透深度$depth >= 40mm$的中、细土质，有：
+
+\begin{equation}
+    TEW_{cor} = \min(28, 13{(ET_0)}^{0.5}) \\
+    REW_{cor} = \min(9, TEW_{cor} - 0.01)
+\end{equation}
+
+对于$depth \in (10mm, 40mm)$，有：
+\begin{equation}
+    K_{c ini} = K_{c ini(I<=10mm)} + \frac{I-10}{40-10}[K_{c ini(I>10mm)} - K_{c ini(I<=10mm)}]
+\end{equation}
+
+其中，$K_{c ini(I≤10mm)}$是指入渗深度 $depth<=10 mm$的所有土壤质地的$K_{c ini}$值；$K_{c ini(I > 40 mm)}$是指入渗深度$depth>40 mm$的粗或中/细土壤质地的$K_{c ini}$值。
+
+$K_{c mid}$ 可以由下式估计：
+\begin{equation}
+    K_{c mid} = K_{c mid(Tab)} + [0.04(u_2 - 2) -0.004(RH_{\min} - 45)]{(\frac{h}{3})}^{0.3}
+\end{equation}
+
+$K_{c end}$ 可以由下式估计：
+\begin{equation}
+    K_{c end} = K_{c end(Tab)} + [0.04(u_2 - 2) -0.004(RH_{\min} - 45)]{(\frac{h}{3})}^{0.3}
+\end{equation}
+
+其中 $K_{c mid(Tab)}$ 和 $K_{c end(Tab)}$ 均是 FAO 作物表中推荐的估计值（见表\ref{ch6:tab:crops}）。
+
+\subsubsection*{人地模块的耦合}
 
 本章研究的模型在基于地理数据的多主体建模框架“ABSESpy”基础上搭建，这是一个。
 该框架使用真实的地理空间数据集来构建人工社会生态系统，同时充分考虑人类行为因素。
 它支持使用地理空间数据，对具有认知、社会影响和反应等行为的主体进行建模，用户可以专注于分别实现人类行为的逻辑和自然过程的仿真，该框架使得两者之间能够轻松地访问和修改变量值。
 该框架可以调度任意数量的自然模块和社会模块，并使它们之间松散耦合。
 
-在本章研究中，人类用水模块通过作物种植和地下水开采来改变自然水平衡模块，自然水平衡模块则通过降水、地表蒸散发的变化来影响人类用水模块中的决策。
+在本章研究中，人类用水模块通过作物种植和地下水开采来改变自然模块，自然模块则通过降水、地表蒸散发的变化来影响人类用水模块中的决策。
 种植作物将改变地表覆被，影响水平衡
 
 \subsection{数据处理}
@@ -204,6 +265,6 @@ $Kc_{ini}$的计算方法如下\cite{allen1998}。
 这个社会效用函数在过往的研究中也有使用，如 Castilla-Rho et al., (2017, 2019) [@castilla-rho2017, @castilla-rho2019]. 如果没有指定这两个参数，我们将参考 [@castilla-rho2017] 的研究从数据库中直接为这两个参数指定值。
 这个社会效用函数的参数（Grid 和 Group）可以用各个地区的文化差异来进行量化。
 
-\subsubsection*{敏感性检验}
+% \subsubsection*{敏感性检验}
 
 \subsubsection*{趋势分析方法}
