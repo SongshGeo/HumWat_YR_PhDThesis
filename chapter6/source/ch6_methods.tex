@@ -154,15 +154,15 @@ $v \in [0, 1]$则表征主体“个体/集体主义”的程度，该参数越�
 $grid$与$group$是反映社会整体平均$b$与$v$水平的参数。
 
 在演化博弈中，决策还是可演化的（Evolutionary），因为一些反应因为符合社会规范而受到奖励，而另一些反应则因为背离社会规范而受到惩罚。
-人类模块在每一个时间步的最后将计算所有主体的博弈结果——$0 \sim 1$标准化后的经济得分（$E$）与社会得分（$S$），并将两者平均$Score = \frac{E + S}{2}$作为主体的最终得分。
+人类模块在每一个时间步的最后将计算所有主体的博弈结果——$0 \sim 1$标准化后的经济得分（$E$）与社会得分（$S$），并将两者平均$Score = E * S$作为主体的最终得分。
 在社会网络中，表现最成功的主体决策以一定概率$p_{l}$被他的朋友们学习，学习后的主体使用被学习对象的$b$和$v$参数代替学习者原本的参数。
 
 综上所述，在人类模块的每次模拟中，每个主体都将遵循图\ref{ch6:fig:society}所示的流程图：
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\textwidth]{hello}
-    \caption{绘图测试}\label{ch6:fig:society}
+    \includegraphics[width=\textwidth]{img/ch6/ch6_updates_diagram.png}
+    \caption{多主体模型的人类模块更新规则示意图}\label{ch6:fig:society}
 \end{figure}
 
 \subsection{自然模块}
