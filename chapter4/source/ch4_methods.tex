@@ -44,23 +44,19 @@
 % 将三者合一起，即：
 如本章前文介绍以及框架图~\ref{ch4:fig:framework}所示，本研究定义的水资源治理综合指数（IWGI）应结合水治理的三个方面（“稀缺情况（S）”、“使用目的（P）”和“分配方式（A）”）。
 由于每个指标维度都有升高和降低两个方向，在整合指标前应假设随着人类活动主导社会-水文循环的进程，三者在其中某个方向对齐:
-
 \begin{equation}
     Transformation \propto S*P*A
 \end{equation}
 
 接下来为三个方面选择了一个指标（$I_x$, $x=S$, $P$，或$A$，分别对应“稀缺情况（S）”、“使用目的（P）”和“分配方式（A）”，来有效地量化这些方面，并将上式转化为自然对数，便于计算各指标对综合指数变化的贡献:
-
 \begin{equation}
     Transformation \propto \ln(I_S) + \ln(I_P) + \ln(I_A)
 \end{equation}
-
 那么，综合水治理指数（IWGI）是标准化指标$I'_x$的平均值:
 \begin{equation}
     IWGI = (I'_S + I'_P + I'_A) / 3
     \label{ch4:eq:IWGI}
 \end{equation}
-
 其中:
 \begin{equation}
     I'_x = (I_x - I_{x, \min}) / (I_{x, \max} - I_{x, \min})
