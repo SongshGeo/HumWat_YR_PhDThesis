@@ -165,7 +165,7 @@
 迭代使用Pettitt算法：反复识别一个突变点从而将时间序列分为该时间点前后两段，并再次分别对两序列进行分析，直到检测到所有显著的突变点。
 虽然接下来的结果展示的是阈值$\alpha = 0.001$的结果（识别出两个断点），但是经过敏感性分析，从$0.0005$到$0.05$的阈值范围选取都不影响本研究结果的鲁棒性（参见图\ref{ch4:fig:sensitivity}）。
 
-\begin{figure}[htb] % use float package if you want it here
+\begin{figure}[!h] % use float package if you want it here
     \includegraphics[width=\textwidth]{img/ch4/ch4_sensitivity.png}
     \caption[突变点检测中显著性阈值选取的敏感性测试]{突变点检测中显著性阈值选取的敏感性测试结果。
     \textbf{A.} 选取不同阈值$\alpha$后识别的突变点个数，所有的方案都识别了两个断点。
