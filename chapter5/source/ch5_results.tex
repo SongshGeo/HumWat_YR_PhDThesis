@@ -32,15 +32,15 @@
 
 具有解释力的变量是构建稳健的合成控制方法的关键。
 本章使用了与用水相关的$24$个变量（见表~\ref{ch5:tab:data_source}），这些数据集在先前的研究中已用于解释中国用水的变化\cite{zhou2020}；由于这些变量之间存在相关性，使用主成分分析进行降维并增强合成控制方法的稳健性。
-研究发现采用肘部法确定$5$个主成分时，能解释$89.63\%$的方差变异（见图~\ref{ch5:fig:elbow}）。
+研究发现采用肘部法确定$5$个主成分时，能解释$89.63\%$的方差变异。
 其中第一个主成分解释$51.6\%$的方差变化，第二个主成分解释$16.9\%$的方差变化。
 这两个主成分是对区域用水量影响最大的两个轴，其余主成分对用水量的解释力均低于$10\%$。
 
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{img/ch5/ch5_elbow.png}
-    \caption{主成分分析的方差解释率肘部图}\label{ch5:fig:elbow}
-\end{figure}
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{img/ch5/ch5_elbow.png}
+%     \caption{主成分分析的方差解释率肘部图}\label{ch5:fig:elbow}
+% \end{figure}
 
 使用双变量图同时展示数据集中样本点和变量特征，可以发现解释力最大的前$10$个特征大多和第一个主成分呈正相关（图\ref{ch5:fig:biplot}）。
 其中工业相关的自变量，如造纸、石化、纺织等高用水行业与第一个维度呈高度正相关；农业相关的自变量则仅呈现微弱正相关，但与第二个主成分呈高度相关（水稻正相关，小麦、玉米及其它农业负相关），可见主成分维度基本能够反映不同的区域的用水特征。
@@ -50,7 +50,7 @@
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.6\textwidth]{img/ch5/ch5_biplot.png}
-    \caption{主成分分析前两个主成分的双变量图}\label{ch5:fig:biplot}
+    \caption[主成分分析前两个主成分的双变量图]{主成分分析前两个主成分的双变量图（图中点为各省数据，x代表离群样本）}\label{ch5:fig:biplot}
 \end{figure}
 
 
@@ -80,7 +80,7 @@ $T$检验结果表明，政策实施前观测与预测间用水量差异的$p$�
 	\includegraphics[width=\linewidth]{img/ch5/ch5_results.png}
 	\caption[黄河流域两次水资源分配制度变化的影响]{
         黄河流域两次水资源分配制度变化的影响。
-        \textbf{A.} “八七”分水方案前后黄河流域用水量；
+        \textbf{A.} “八七”分水方案前后黄河流域用水量（$1 \times 10^9~m^3$）；
         \textbf{B.} 流域统一调度前后黄河流域的用水情况。蓝线是来自统计资料的用水量，灰色线为经济和环境背景控制下差分合成控制法的估计值；
         \textbf{C.} 黄河流域干旱强度与断流事件，灰色气泡的大小表示断流河段的长度。
 	}\label{ch5:fig:main_results}
