@@ -296,8 +296,6 @@
 	\clearpage{\pagestyle{empty}\bnu@cleardoublepage}}
 \let\cleardoublepage\bnu@clearemptydoublepage
 
-
-
 % 定义页眉页脚
 \def\ps@bnu@empty{%
 	\let\@oddhead\@empty%
@@ -311,19 +309,15 @@
 	\let\@evenfoot=\@oddfoot}
 \def\ps@bnu@headings{%
 	\def\@oddhead{\vbox to\headheight{%
-		% \hb@xt@\textwidth{\hfill\wuhao\song\leftmark\hfill} % 章节标题
-		\hb@xt@\textwidth{\hfill\wuhao\song\bnu@ctitle\hfill} % 论文标题
+		\hb@xt@\textwidth{\hfill\wuhao\song\leftmark\hfill} % 章节标题
 		\vskip2pt\hbox{\vrule width\textwidth height0.4pt depth0pt}}}
 	\def\@evenhead{\vbox to\headheight{%
-		% \hb@xt@\textwidth{\hfill\wuhao\song\leftmark\hfill} % 章节标题
-		\hb@xt@\textwidth{\hfill\wuhao\song\bnu@ctitle\hfill} % 论文标题
+        \hb@xt@\textwidth{\hfill\wuhao\song\bnu@ctitle\hfill} % 论文标题
 		\vskip2pt\hbox{\vrule width\textwidth height0.4pt depth0pt}}}
 	\def\@oddfoot{\hfil\wuhao\thepage\hfil}
 	\let\@evenfoot=\@oddfoot}
 % 其实可以直接写到 \chapter 的定义里面
 \renewcommand{\chaptermark}[1]{\@mkboth{\@chapapp\  ~~#1}{}}
-
-
 
 
 % 段落
@@ -832,7 +826,7 @@
 		
 		\begin{center}
 			\ifbnu@bachelor{\vskip3.0cm\xiaosi \song\ziju{4bp} \bf \bnu@org}\else
-			{\sanhao\fs\bnu@xueweiban}\fi
+			\textbf{\sanhao\fs\bnu@xueweiban}\fi
 		\end{center}
 	\end{center}}
 
