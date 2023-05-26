@@ -28,6 +28,11 @@
 	\usepackage{pifont}  % 输入带圈数字，参考https://blog.csdn.net/tsingke/article/details/105961016
 	\newcolumntype{L}{>{\RaggedRight\hangafter=1\hangindent=0em}X}
 
+	% 罗马数字大写
+	% 参考页面：https://readthelatexmanual.wordpress.com/2016/02/21/roman-numerals-in-latex/
+	\newcommand{\RomanCap}[1]
+    {\MakeUppercase{\romannumeral#1}}
+
 	\begin{document}
 	\graphicspath{{img/}}
 	
