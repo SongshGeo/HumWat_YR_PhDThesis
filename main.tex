@@ -33,6 +33,11 @@
 	\newcommand{\RomanCap}[1]
     {\MakeUppercase{\romannumeral#1}}
 
+	% 图表按章节序号
+	% 参考页面 https://latex.org/forum/viewtopic.php?t=25986
+	\numberwithin{figure}{chapter}
+	\numberwithin{table}{chapter}
+
 	\begin{document}
 	\graphicspath{{img/}}
 	
